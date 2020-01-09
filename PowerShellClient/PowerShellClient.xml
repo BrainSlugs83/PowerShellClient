@@ -1,0 +1,1310 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PowerShellClient</name>
+    </assembly>
+    <members>
+        <member name="T:PowerShellClient.IPSClient">
+            <summary>
+            Used for executing PowerShell against a connected machine.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.IPSClient.ConnectionInfo">
+            <summary>
+            Gets a copy of the current connection information.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.IPSClient.Host">
+            <summary>
+            Gets the associated <see cref="T:PowerShellClient.PSClientHost" />.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.IPSClient.HostUI">
+            <summary>
+            Gets the associated <see cref="T:PowerShellClient.PSClientHostUI" />.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.IPSClient.FileSystem">
+            <summary>
+            Gets the connected file system.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.Open(PowerShellClient.PSConnectionInfo)">
+            <summary>
+            Opens the connection.
+            </summary>
+            <param name="connectionInfo">
+            The connection information.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.OpenAsync(PowerShellClient.PSConnectionInfo)">
+            <summary>
+            Opens the connection, asynchronously.
+            </summary>
+            <param name="connectionInfo">
+            The connection information.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.TestConnection(PowerShellClient.PSConnectionInfo)">
+            <summary>
+            Tests that a given connection is valid and can be opened.
+            </summary>
+            <param name="connectionInfo">
+            The connection information.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.TestConnectionAsync(PowerShellClient.PSConnectionInfo)">
+            <summary>
+            Tests that a given connection is valid and can be opened, asynchronously.
+            </summary>
+            <param name="connectionInfo">
+            The connection information.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.Close">
+            <summary>
+            Closes the connection (if open).
+            </summary>
+            <remarks>
+            Must not fail or throw.
+            </remarks>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.CloseAsync">
+            <summary>
+            Closes the connection, asynchronously (if open).
+            </summary>
+            <remarks>
+            Must not fail or throw.
+            </remarks>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeCommand``1(System.String,System.Object,System.String[])">
+            <summary>
+            Invokes a PowerShell command.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="cmdlet">The name of the cmdlet to invoke.</param>
+            <param name="parameters">
+            An anonymous object containing the parameters for the cmdlet.
+            </param>
+            <param name="switches">A collection of switches for the cmdlet.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeCommand(System.String,System.Object,System.String[])">
+            <summary>
+            Invokes a PowerShell command.
+            </summary>
+            <param name="cmdlet">The name of the cmdlet to invoke.</param>
+            <param name="parameters">
+            An anonymous object containing the parameters for the cmdlet.
+            </param>
+            <param name="switches">A collection of switches for the cmdlet.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeCommandAsync``1(System.String,System.Object,System.String[])">
+            <summary>
+            Invokes a PowerShell command asynchronously.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="cmdlet">The name of the cmdlet to invoke.</param>
+            <param name="parameters">
+            An anonymous object containing the parameters for the cmdlet.
+            </param>
+            <param name="switches">A collection of switches for the cmdlet.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeCommandAsync(System.String,System.Object,System.String[])">
+            <summary>
+            Invokes a PowerShell command asynchronously.
+            </summary>
+            <param name="cmdlet">The name of the cmdlet to invoke.</param>
+            <param name="parameters">
+            An anonymous object containing the parameters for the cmdlet.
+            </param>
+            <param name="switches">A collection of switches for the cmdlet.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeCommand``1(System.Management.Automation.Runspaces.Command)">
+            <summary>
+            Invokes a PowerShell command.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="command">The PowerShell command to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeCommand(System.Management.Automation.Runspaces.Command)">
+            <summary>
+            Invokes a PowerShell command.
+            </summary>
+            <param name="command">The PowerShell command to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeCommandAsync``1(System.Management.Automation.Runspaces.Command)">
+            <summary>
+            Invokes a PowerShell command asynchronously.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="command">The PowerShell command to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeCommandAsync(System.Management.Automation.Runspaces.Command)">
+            <summary>
+            Invokes a PowerShell command asynchronously.
+            </summary>
+            <param name="command">The PowerShell command to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokePipedCommands``1(System.Management.Automation.Runspaces.Command[])">
+            <summary>
+            Invokes PowerShell command(s).
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="commands">The PowerShell commands to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokePipedCommands(System.Management.Automation.Runspaces.Command[])">
+            <summary>
+            Invokes PowerShell command(s).
+            </summary>
+            <param name="commands">The PowerShell commands to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeCommandsAsync(System.Management.Automation.Runspaces.Command[])">
+            <summary>
+            Invokes PowerShell command(s) asynchronously.
+            </summary>
+            <param name="commands">The PowerShell commands to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeCommandsAsync``1(System.Management.Automation.Runspaces.Command[])">
+            <summary>
+            Invokes PowerShell command(s) asynchronously.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="commands">The PowerShell commands to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeScript(System.String)">
+            <summary>
+            Invokes an arbitrary block of PowerShell script.
+            </summary>
+            <param name="script">The PowerShell script block.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeScript``1(System.String)">
+            <summary>
+            Invokes an arbitrary block of PowerShell script.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="script">The PowerShell script block.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeScriptAsync(System.String)">
+            <summary>
+            Invokes an arbitrary PowerShell script block, asynchronously.
+            </summary>
+            <param name="script">The PowerShell script block.</param>
+        </member>
+        <member name="M:PowerShellClient.IPSClient.InvokeScriptAsync``1(System.String)">
+            <summary>
+            Invokes an arbitrary PowerShell script block, asynchronously.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="script">The PowerShell script block.</param>
+        </member>
+        <member name="T:PowerShellClient.PSClient">
+            <summary>
+            Client for Executing PowerShell Commands against a connected machine.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClient.ConnectionInfo">
+            <summary>
+            Gets a copy of the current connection information.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClient.Host">
+            <summary>
+            Gets the associated <see cref="T:PowerShellClient.PSClientHost" />.
+            </summary>
+            <remarks>Overwritten every time the object is connected.</remarks>
+        </member>
+        <member name="P:PowerShellClient.PSClient.HostUI">
+            <summary>
+            Gets the associated <see cref="T:PowerShellClient.PSClientHostUI" />.
+            </summary>
+            <remarks>
+            <para>Overwritten every time the object is connected.</para>
+            <para>
+            It's possible for this to be <c>null</c> (even when connected); so check the
+            returned object before consuming it.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:PowerShellClient.PSClient.TestConnection(PowerShellClient.PSConnectionInfo)">
+            <summary>
+            Tests that a given connection is valid and can be opened.
+            </summary>
+            <param name="connectionInfo">
+            The connection information.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.TestConnectionAsync(PowerShellClient.PSConnectionInfo)">
+            <summary>
+            Tests that a given connection is valid and can be opened, asynchronously.
+            </summary>
+            <param name="connectionInfo">
+            The connection information.
+            </param>
+        </member>
+        <member name="P:PowerShellClient.PSClient.Runspace">
+            <summary>
+            Gets the current Runspace.
+            </summary>
+            <remarks>Will be <c>null</c> if the connection is not currently open.</remarks>
+        </member>
+        <member name="P:PowerShellClient.PSClient.FileSystem">
+            <summary>
+            Gets the connected file system.
+            </summary>
+            <remarks>Will be <c>null</c> if the connection is not currently open.</remarks>
+        </member>
+        <member name="M:PowerShellClient.PSClient.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PowerShellClient.PSClient" /> class.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSClient.#ctor(PowerShellClient.PSConnectionInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PowerShellClient.PSClient" /> class to a connected state.
+            </summary>
+            <param name="connectionInfo">
+            The connection information.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.CloseAsync">
+            <summary>
+            Closes the connection, asynchronously (if open).
+            </summary>
+            <remarks>
+            Must not fail or throw.
+            </remarks>
+        </member>
+        <member name="M:PowerShellClient.PSClient.OpenAsync(PowerShellClient.PSConnectionInfo)">
+            <summary>
+            Opens the connection, asynchronously.
+            </summary>
+            <param name="connectionInfo">
+            The connection information.
+            </param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:PowerShellClient.PSClient.Close" -->
+        <member name="M:PowerShellClient.PSClient.Open(PowerShellClient.PSConnectionInfo)">
+            <summary>
+            Opens the connection.
+            </summary>
+            <param name="connectionInfo">
+            The connection information.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeCommand``1(System.String,System.Object,System.String[])">
+            <summary>
+            Invokes a PowerShell command.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="cmdlet">The name of the cmdlet to invoke.</param>
+            <param name="parameters">
+            An anonymous object containing the parameters for the cmdlet.
+            </param>
+            <param name="switches">A collection of switches for the cmdlet.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeCommand(System.String,System.Object,System.String[])">
+            <summary>
+            Invokes a PowerShell command.
+            </summary>
+            <param name="cmdlet">The name of the cmdlet to invoke.</param>
+            <param name="parameters">
+            An anonymous object containing the parameters for the cmdlet.
+            </param>
+            <param name="switches">A collection of switches for the cmdlet.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeCommandAsync``1(System.String,System.Object,System.String[])">
+            <summary>
+            Invokes a PowerShell command asynchronously.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="cmdlet">The name of the cmdlet to invoke.</param>
+            <param name="parameters">
+            An anonymous object containing the parameters for the cmdlet.
+            </param>
+            <param name="switches">A collection of switches for the cmdlet.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeCommandAsync(System.String,System.Object,System.String[])">
+            <summary>
+            Invokes a PowerShell command asynchronously.
+            </summary>
+            <param name="cmdlet">The name of the cmdlet to invoke.</param>
+            <param name="parameters">
+            An anonymous object containing the parameters for the cmdlet.
+            </param>
+            <param name="switches">A collection of switches for the cmdlet.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeCommand``1(System.Management.Automation.Runspaces.Command)">
+            <summary>
+            Invokes a PowerShell command.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="command">The PowerShell command to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeCommand(System.Management.Automation.Runspaces.Command)">
+            <summary>
+            Invokes a PowerShell command.
+            </summary>
+            <param name="command">The PowerShell command to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeCommandAsync``1(System.Management.Automation.Runspaces.Command)">
+            <summary>
+            Invokes a PowerShell command asynchronously.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="command">The PowerShell command to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeCommandAsync(System.Management.Automation.Runspaces.Command)">
+            <summary>
+            Invokes a PowerShell command asynchronously.
+            </summary>
+            <param name="command">The PowerShell command to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokePipedCommands(System.Management.Automation.Runspaces.Command[])">
+            <summary>
+            Invokes a collection of PowerShell command(s), as if they were piped together.
+            </summary>
+            <param name="commands">The PowerShell commands to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokePipedCommands``1(System.Management.Automation.Runspaces.Command[])">
+            <summary>
+            Invokes a collection of PowerShell command(s), as if they were piped together.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="commands">The PowerShell commands to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeCommandsAsync(System.Management.Automation.Runspaces.Command[])">
+            <summary>
+            Invokes PowerShell command(s) asynchronously.
+            </summary>
+            <param name="commands">The PowerShell commands to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeCommandsAsync``1(System.Management.Automation.Runspaces.Command[])">
+            <summary>
+            Invokes PowerShell command(s) asynchronously.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="commands">The PowerShell commands to invoke.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeScript(System.String)">
+            <summary>
+            Invokes an arbitrary block of PowerShell script.
+            </summary>
+            <param name="script">The PowerShell script block.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeScript``1(System.String)">
+            <summary>
+            Invokes an arbitrary block of PowerShell script.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="script">The PowerShell script block.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeScriptAsync(System.String)">
+            <summary>
+            Invokes an arbitrary PowerShell script block, asynchronously.
+            </summary>
+            <param name="script">The PowerShell script block.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.InvokeScriptAsync``1(System.String)">
+            <summary>
+            Invokes an arbitrary PowerShell script block, asynchronously.
+            </summary>
+            <typeparam name="T">
+            The type of results to return from the output stream.
+            </typeparam>
+            <param name="script">The PowerShell script block.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing">
+            <c>true</c> if called from <see cref="M:PowerShellClient.PSClient.Dispose" />, otherwise <c>false</c>.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSClient.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:PowerShellClient.PSClient" /> class.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSClient.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or
+            resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:PowerShellClient.PSClientHost">
+            <summary>
+            Custom Implementation of PSHost for the Remote PowerShell object.
+            </summary>
+            <seealso cref="T:System.Management.Automation.Host.PSHost" />
+            <seealso cref="T:PowerShellClient.PSClientHostUI" />
+        </member>
+        <member name="P:PowerShellClient.PSClientHost.ShouldExitCode">
+            <summary>
+            Gets or sets the most recent exit code that was passed in to the
+            <see cref="M:PowerShellClient.PSClientHost.SetShouldExit(System.Int32)" /> method.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHost.CurrentCulture">
+            <summary>
+            Gets the current culture.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHost.CurrentUICulture">
+            <summary>
+            Gets the current UI culture.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHost.InstanceId">
+            <summary>
+            Gets the instance identifier.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHost.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHost.UI">
+            <summary>
+            Gets the PowerShell Host User Interface Object.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHost.Version">
+            <summary>
+            Gets the version.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSClientHost.EnterNestedPrompt">
+            <summary>
+            Enters the nested prompt.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSClientHost.ExitNestedPrompt">
+            <summary>
+            Exits the nested prompt.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSClientHost.NotifyBeginApplication">
+            <summary>
+            When overridden in a derived class, notifies the host that the Windows
+            PowerShell runtime is about to execute a legacy command-line application. A
+            legacy application is defined as a console-mode executable that can perform any
+            of the following operations: read from stdin, write to stdout, write to stderr,
+            or use any of the Windows console functions.
+            </summary>
+            <exception cref="T:System.Management.Automation.Host.HostException">
+            The host can throw this exception when it cannot complete an operation.
+            </exception>
+            <exception cref="T:System.NotImplementedException">
+            A non-interactive host should throw a "not implemented" exception when it
+            receives this call.
+            </exception>
+            <exception cref="T:System.Management.Automation.RuntimeException">
+            The host can throw this exception when an error occurs while a command is
+            running.
+            </exception>
+            <remarks>
+            <para>
+            The Windows PowerShell engine can call this method several times in the course
+            of a single pipeline. For example, the pipeline abc.exe | bar-cmdlet | baz.exe
+            causes a sequence of calls similar to the following:
+            </para>
+            <list type="bullet">
+            <item>
+            <description>
+            NotifyBeginApplication: Called once when abc.exe is started.
+            </description>
+            </item>
+            <item>
+            <description>
+            NotifyBeginApplication: Called once when baz.exe is started.
+            </description>
+            </item>
+            <item>
+            <description>
+            NotifyEndApplication: Called once when baz.exe terminates.
+            </description>
+            </item>
+            <item>
+            <description>
+            NotifyEndApplication: Called once when abc.exe terminates.
+            </description>
+            </item>
+            </list>
+            <para>
+            Note that the order in which the NotifyEndApplication method call follows its
+            corresponding NotifyBeginApplication method call is not defined and should not
+            be depended upon. In other words, the NotifyBeginApplication method can be
+            called several times before a corresponding NotifyEndApplication method is
+            called.The only thing that is guaranteed is that there will be an equal number
+            of calls to the NotifyBeginApplication and NotifyEndApplication methods.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:PowerShellClient.PSClientHost.NotifyEndApplication">
+            <summary>
+            When overridden in a derived class, notifies the host that the Windows
+            PowerShell engine has completed the execution of a legacy command. A legacy
+            application is defined as a console-mode executable that can perform any of the
+            following operations: read from stdin, write to stdout, write to stderr, or use
+            any of the Windows console functions.
+            </summary>
+            <exception cref="T:System.Management.Automation.Host.HostException">
+            The host can throw this exception when it cannot complete an operation.
+            </exception>
+            <exception cref="T:System.NotImplementedException">
+            A non-interactive host should throw a "not implemented" exception when it
+            receives this call.
+            </exception>
+            <exception cref="T:System.Management.Automation.RuntimeException">
+            The host can throw this exception when an error occurs while a command is
+            running.
+            </exception>
+            <remarks>
+            Note that the order in which the NotifyEndApplication method call follows its
+            corresponding NotifyBeginApplication method is not defined and should not be
+            depended upon. In other words, the NotifyBeginApplication method can be called
+            several times before a corresponding NotifyEndApplication method is called. The
+            only thing that is guaranteed is that there will be an equal number of calls to
+            the NotifyBeginApplication and NotifyEndApplication methods.
+            </remarks>
+        </member>
+        <member name="M:PowerShellClient.PSClientHost.SetShouldExit(System.Int32)">
+            <summary>
+            When overridden in a derived class, requests to end the current runspace. The
+            Windows PowerShell engine calls this method to request that the host
+            application shut down and terminate the host root runspace.
+            </summary>
+            <param name="exitCode">
+            The exit code that is used to set the host's process exit code.
+            </param>
+            <exception cref="T:System.Management.Automation.Host.HostException">
+            The host can throw this exception when it cannot complete an operation.
+            </exception>
+            <exception cref="T:System.Management.Automation.RuntimeException">
+            The host can throw this exception when an error occurs while a command is
+            running.
+            </exception>
+            <remarks>
+            To honor this request, the host application should stop accepting and
+            submitting commands to the engine and close the runspace.
+            </remarks>
+        </member>
+        <member name="T:PowerShellClient.PSClientHostUI">
+            <summary>
+            Custom Implementation of PSHostUserInterface for the PSClientHost object.
+            </summary>
+            <seealso cref="T:System.Management.Automation.Host.PSHost" />
+            <seealso cref="T:PowerShellClient.PSClientHost" />
+            <seealso cref="T:System.Management.Automation.Host.PSHostUserInterface" />
+        </member>
+        <member name="P:PowerShellClient.PSClientHostUI.PromptCallback">
+            <summary>
+            Gets or sets the prompt callback; argument names: caption, message,
+            descriptions.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHostUI.WriteCallback">
+            <summary>
+            Gets or sets the write callback; argument names: level, foregroundColor,
+            backgroundColor, message.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHostUI.PromptForChoiceCallback">
+            <summary>
+            Gets or sets the prompt for choice callback; argument names: caption, message,
+            choices, defaultChoice.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHostUI.PromptForCredentialsCallback">
+            <summary>
+            Gets or sets the prompt for credentials callback; argument names: caption,
+            message, userName, targetName, allowedCredentialTypes, options.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHostUI.ReadLineCallback">
+            <summary>
+            Gets or sets the read line callback.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHostUI.WriteProgressCallback">
+            <summary>
+            Gets or sets the write progress callback; argument names: sourceId, record.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSClientHostUI.RawUI">
+            <summary>
+            Gets the PowerShell Host Raw User Interface Object.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PowerShellClient.PSClientHostUI"
+            /> class.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.WriteToLog(PowerShellClient.PSOutputStream,System.Nullable{System.ConsoleColor},System.Nullable{System.ConsoleColor},System.String)">
+            <summary>
+            Appends the specified message to the running log without any newlines, etc.
+            (Might be a partial line.)
+            </summary>
+            <param name="level">The write level.</param>
+            <param name="foregroundColor">The foreground color of the display.</param>
+            <param name="backgroundColor">The background color of the display.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.Prompt(System.String,System.String,System.Collections.ObjectModel.Collection{System.Management.Automation.Host.FieldDescription})">
+            <summary>
+            When overridden in a derived class, prompts the user for input.
+            </summary>
+            <param name="caption">The text that precedes the prompt.</param>
+            <param name="message">The text of the prompt.</param>
+            <param name="descriptions">
+            A collection of <see cref="T:System.Management.Automation.Host.FieldDescription" /> objects that contains the user input.
+            </param>
+            <returns>
+            A dictionary of types <see cref="T:System.String" /> and <see cref="T:System.Management.Automation.PSObject" /> that contains
+            the results of the user prompts. The keys of the dictionary are the field names from 
+            the FieldDescription objects. The dictionary values are objects that represent the 
+            values of the corresponding fields as collected from the user.
+            </returns>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.PromptForChoice(System.String,System.String,System.Collections.ObjectModel.Collection{System.Management.Automation.Host.ChoiceDescription},System.Int32)">
+            <summary>
+            When overridden in a derived class, provides a set of choices that enable the user to 
+            choose a single option from a set of options.
+            </summary>
+            <param name="caption">The text that precedes (a title) the choices.</param>
+            <param name="message">A message that describes the choice.</param>
+            <param name="choices">
+            A collection of <see cref="T:System.Management.Automation.Host.ChoiceDescription" /> objects that describe each choice.
+            </param>
+            <param name="defaultChoice">The default choice.</param>
+            <returns>
+            The index of the Choices parameter collection element that corresponds to the option 
+            that is selected by the user.
+            </returns>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.PromptForCredential(System.String,System.String,System.String,System.String)">
+            <summary>
+            When overridden in a derived class, prompts the user for credentials with a
+            specified prompt window caption, prompt message, user name, and target name.
+            </summary>
+            <param name="caption">The caption for the message window.</param>
+            <param name="message">The text of the message.</param>
+            <param name="userName">
+            The user name whose credential is to be prompted for. If this parameter set to
+            <c>null</c> or an empty string, the function prompts for the user name first.
+            </param>
+            <param name="targetName">
+            The name of the target for which the credential is collected.
+            </param>
+            <returns>
+            A <see cref="T:System.Management.Automation.PSCredential" /> object that contains the credentials for the
+            target.
+            </returns>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.PromptForCredential(System.String,System.String,System.String,System.String,System.Management.Automation.PSCredentialTypes,System.Management.Automation.PSCredentialUIOptions)">
+            <summary>
+            When overridden in a derived class, prompts the user for credentials by using a 
+            specified prompt window caption, prompt message, user name and target name, credential
+            types allowed to be returned, and UI behavior options.
+            </summary>
+            <param name="caption">The caption for the message window.</param>
+            <param name="message">The text of the message.</param>
+            <param name="userName">
+            The user name whose credential is to be prompted for. If this parameter set to 
+            <c>null</c> or an empty string, the function prompts for the user name first.
+            </param>
+            <param name="targetName">
+            The name of the target for which the credential is collected.
+            </param>
+            <param name="allowedCredentialTypes">
+            A bitwise combination of the <see cref="T:System.Management.Automation.PSCredentialTypes" /> enumeration values that 
+            identify the types of credentials that can be returned.
+            </param>
+            <param name="options">
+            A bitwise combination of the <see cref="T:System.Management.Automation.PSCredentialUIOptions" /> enumeration values 
+            that identify the UI behavior when it gathers the credentials.
+            </param>
+            <returns>
+            A <see cref="T:System.Management.Automation.PSCredential" /> object that contains the credentials for the target.
+            </returns>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.ReadLine">
+            <summary>
+            When overridden in a derived class, reads characters that are entered by the
+            user until a newline (carriage return) character is encountered.
+            </summary>
+            <returns>The characters that are entered by the user.</returns>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.ReadLineAsSecureString">
+            <summary>
+            When overridden in a derived class, reads characters entered by the user until
+            a newline (carriage return) character is encountered and returns the characters
+            as a secure string.
+            </summary>
+            <returns>
+            A SecureString object that contains the characters that are entered by the
+            user.
+            </returns>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.Write(System.String)">
+            <summary>
+            When overridden in a derived class, writes characters to the output display of
+            the host.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.Write(System.ConsoleColor,System.ConsoleColor,System.String)">
+            <summary>
+            When overridden in a derived class, writes characters to the output display of
+            the host with possible foreground and background colors.
+            </summary>
+            <param name="foregroundColor">The foreground color of the display.</param>
+            <param name="backgroundColor">The background color of the display.</param>
+            <param name="value">The characters to be written.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.WriteDebugLine(System.String)">
+            <summary>
+            When overridden in a derived class, displays a debug message to the user.
+            </summary>
+            <param name="message">Debug message to be displayed.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.WriteErrorLine(System.String)">
+            <summary>
+            When overridden in a derived class, writes a line to the error display of the
+            host.
+            </summary>
+            <param name="message">Error message to be displayed.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.WriteLine(System.String)">
+            <summary>
+            When overridden in a derived class, writes a line of characters to the output
+            display of the host and appends a newline (carriage return) character.
+            </summary>
+            <param name="value">The line of characters to be written.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.WriteProgress(System.Int64,System.Management.Automation.ProgressRecord)">
+            <summary>
+            When overridden in a derived class, writes a progress report to be displayed to
+            the user.
+            </summary>
+            <param name="sourceId">A unique identifier of the source of the record.</param>
+            <param name="record">
+            A ProgressRecord object that contains the progress record to be displayed.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.WriteVerboseLine(System.String)">
+            <summary>
+            When overridden in a derived class, writes a verbose line to be displayed to
+            the user.
+            </summary>
+            <param name="message">The verbose message to be displayed.</param>
+        </member>
+        <member name="M:PowerShellClient.PSClientHostUI.WriteWarningLine(System.String)">
+            <summary>
+            When overridden in a derived class, writes a warning line to be displayed to
+            the user.
+            </summary>
+            <param name="message">The warning message to be displayed.</param>
+        </member>
+        <member name="T:PowerShellClient.PSConnectionInfo">
+            <summary>
+            Connection Info object for creating a PSClient.
+            </summary>
+        </member>
+        <member name="F:PowerShellClient.PSConnectionInfo.DefaultRemotePowerShellPort">
+            <summary>
+            The default Remote PowerShell port.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSConnectionInfo.UseSecurePowerShell">
+            <summary>
+            Gets or sets a value indicating whether or not a secure connection is required.
+            </summary>
+            <value>
+            <c>true</c> if a secure connection is required; otherwise <c>false</c>.
+            </value>
+            <remarks>
+            Note that if <see cref="P:PowerShellClient.PSConnectionInfo.RequireValidCertificate">RequireValidCertificate</see> is set to <c>false</c>, that the 
+            connection isn't really secure.  It's just using a secure port and protocol (in an insecure way).
+            </remarks>
+        </member>
+        <member name="P:PowerShellClient.PSConnectionInfo.RequireValidCertificate">
+            <summary>
+            Gets or sets a value indicating whether the SSL certificate must be validated
+            or not.
+            </summary>
+            <remarks>
+            This is set to false by default, as it requires a fair bit of setup to get it to work on a given machine.
+            </remarks>
+        </member>
+        <member name="P:PowerShellClient.PSConnectionInfo.ComputerAddress">
+            <summary>
+            Gets or sets the Remote Computer Address.
+            </summary>
+            <value>
+            IP Address, Machine Name (local network), FQDN, etc. of the remote computer.
+            </value>
+        </member>
+        <member name="P:PowerShellClient.PSConnectionInfo.Port">
+            <summary>
+            Gets or sets the port used to connect to the Remote Computer.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSConnectionInfo.Credentials">
+            <summary>
+            Gets or sets the Credentials to be used by the remote connection.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSConnectionInfo.ConnectionTimeout">
+            <summary>
+            Gets or sets the connection timeout.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSConnectionInfo.OperationTimeout">
+            <summary>
+            Gets or sets the operation timeout.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSConnectionInfo.IsLocalConnection">
+            <summary>
+            Returns <c>true</c> if the connection is a local one; otherwise <c>false</c>.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSConnectionInfo.CreateRemoteConnection(System.String,System.String,System.Security.SecureString,System.Nullable{System.UInt16})">
+            <summary>
+            Creates Remote PowerShell Connection Information for a given computer, using a
+            standard UserName and Password combination.
+            </summary>
+            <param name="computerAddress">
+            The computer address (IP Address, Machine Name (local network), FQDN, etc.)
+            </param>
+            <param name="userName">The UserName to connect with.</param>
+            <param name="password">The Password to connect with.</param>
+        </member>
+        <member name="M:PowerShellClient.PSConnectionInfo.CreateLocalConnection">
+            <summary>
+            Creates a <see cref="T:PowerShellClient.PSConnectionInfo" /> object that represents a
+            connection to the local machine (i.e. allows you to use to library for
+            non-remote connections).
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSConnectionInfo.System#ICloneable#Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:PowerShellClient.PSConnectionInfo.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:PowerShellClient.PSConnectionInfo.ToRunspaceConnectionInfo">
+            <summary>
+            Converts this instance into runspace connection information.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSConnectionInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:PowerShellClient.PSConnectionInfo.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+            </returns>
+        </member>
+        <member name="T:PowerShellClient.PSFileSystem">
+            <summary>
+            Utilities for accessing the File System on a Remote Machine via PowerShell.
+            </summary>
+        </member>
+        <member name="P:PowerShellClient.PSFileSystem.PSClient">
+            <summary>
+            Gets the PowerShell Client instance.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.#ctor(PowerShellClient.PSClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PowerShellClient.PSFileSystem" /> class.
+            </summary>
+            <param name="psClient">
+            The PowerShell Client instance to perform the commands against.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.PathExists(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Determines if the specified path exists on the remote machine.
+            </summary>
+            <param name="path">The path to check for.</param>
+            <param name="checkFiles">
+            <c>true</c> if you want to check for files that exist.
+            </param>
+            <param name="checkFolders">
+            <c>true</c> if you want to check for folders that exist.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.PathExistsAsync(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Determines if the specified path exists on the remote machine asynchronously.
+            </summary>
+            <param name="path">The path to check for.</param>
+            <param name="checkFiles">
+            <c>true</c> if you want to check for files that exist.
+            </param>
+            <param name="checkFolders">
+            <c>true</c> if you want to check for folders that exist.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.EnsureDirectory(System.String)">
+            <summary>
+            Ensures that the given directory exists on the remote machine.
+            </summary>
+            <param name="directory">The directory to check for.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.EnsureDirectoryAsync(System.String)">
+            <summary>
+            Ensures that the given directory exists on the remote machine asynchronously.
+            </summary>
+            <param name="directory">The directory to check for.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.GetFileBytes(System.String)">
+            <summary>
+            Gets raw bytes of a file on the remote file system.
+            </summary>
+            <param name="remoteFilePath">The path to the file.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.GetFileBytesAsync(System.String)">
+            <summary>
+            Gets raw bytes of a file on the remote file system asynchronously.
+            </summary>
+            <param name="remoteFilePath">The path to the file.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.GetFileText(System.String)">
+            <summary>
+            Gets text from a file on the remote file system.
+            </summary>
+            <param name="remoteFilePath">The path to the file.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.GetFileTextAsync(System.String)">
+            <summary>
+            Gets text from a file on the remote file system asynchronously.
+            </summary>
+            <param name="remoteFilePath">The path to the file.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.GetFileSize(System.String)">
+            <summary>
+            Gets the size of a remote file.
+            </summary>
+            <param name="remoteFilePath">The remote file path.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.GetFileSizeAsync(System.String)">
+            <summary>
+            Gets the size of a remote file asynchronously.
+            </summary>
+            <param name="remoteFilePath">The remote file path.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.GetFileHash(System.String,System.String)">
+            <summary>
+            Gets the hash of a remote file.
+            </summary>
+            <param name="remoteFilePath">The remote file path.</param>
+            <param name="algorithm">The hashing algorithm to use (default is MD5).</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.GetFileHashAsync(System.String,System.String)">
+            <summary>
+            Gets the hash of a remote file asynchronously.
+            </summary>
+            <param name="remoteFilePath">The remote file path.</param>
+            <param name="algorithm">The hashing algorithm to use (default is MD5).</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.PutFile(System.String,System.Byte[],System.Boolean)">
+            <summary>
+            Puts a file on the remote machine.
+            </summary>
+            <param name="path">The path to the file.</param>
+            <param name="contents">The raw binary contents of the file.</param>
+            <param name="unblock">
+            <c>true</c> to unblock the file after it's created; otherwise <c>false</c>.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.PutFileAsync(System.String,System.Byte[],System.Boolean)">
+            <summary>
+            Puts a file on the remote machine asynchronously.
+            </summary>
+            <param name="path">The path to the file.</param>
+            <param name="contents">The raw binary contents of the file.</param>
+            <param name="unblock">
+            <c>true</c> to unblock the file after it's created; otherwise <c>false</c>.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.UnzipTo(System.IO.Compression.ZipArchive,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Unzips the supplied zip file to the specified remote file system path.
+            </summary>
+            <param name="zipFile">The zip file.</param>
+            <param name="outputPath">
+            The path on the remote file system where the zip file should be unzipped.
+            </param>
+            <param name="token">A cancellation token to abort the unzipping operation.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.UnzipToAsync(System.IO.Compression.ZipArchive,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Unzips the supplied zip file to the specified remote file system path
+            asynchronously.
+            </summary>
+            <param name="zipFile">The zip file.</param>
+            <param name="outputPath">
+            The path on the remote file system where the zip file should be unzipped.
+            </param>
+            <param name="token">A cancellation token to abort the unzipping operation.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.UnzipTo(System.IO.Compression.ZipArchive,System.String)">
+            <summary>
+            Unzips the supplied zip file to the specified remote file system path.
+            </summary>
+            <param name="zipFile">The zip file.</param>
+            <param name="outputPath">
+            The path on the remote file system where the zip file should be unzipped.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.UnzipToAsync(System.IO.Compression.ZipArchive,System.String)">
+            <summary>
+            Unzips the supplied zip file to the specified remote file system path
+            asynchronously.
+            </summary>
+            <param name="zipFile">The zip file.</param>
+            <param name="outputPath">
+            The path on the remote file system where the zip file should be unzipped.
+            </param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.DeleteFile(System.String)">
+            <summary>
+            Deletes a file from the connected machine.
+            </summary>
+            <param name="path">The path to the file.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.DeleteFileAsync(System.String)">
+            <summary>
+            Deletes a file from the connected machine asynchronously.
+            </summary>
+            <param name="path">The path to the file.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.DeleteFolderRecursively(System.String)">
+            <summary>
+            Deletes a folder (recursively) from the connected machine.
+            </summary>
+            <param name="path">The path to the folder.</param>
+        </member>
+        <member name="M:PowerShellClient.PSFileSystem.DeleteFolderRecursivelyAsync(System.String)">
+            <summary>
+            Deletes a folder (recursively) from the connected machine asynchronously.
+            </summary>
+            <param name="path">The path to the folder.</param>
+        </member>
+        <member name="T:PowerShellClient.PSOutputStream">
+            <summary>
+            Specifies the PowerShell Stream to be used, by the various Write-* cmdlets.
+            </summary>
+        </member>
+        <member name="F:PowerShellClient.PSOutputStream.Info">
+            <summary>
+            Write-Host
+            </summary>
+            <remarks>
+            See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host
+            </remarks>
+        </member>
+        <member name="F:PowerShellClient.PSOutputStream.Error">
+            <summary>
+            Write-Error
+            </summary>
+            <remarks>
+            See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error
+            </remarks>
+        </member>
+        <member name="F:PowerShellClient.PSOutputStream.Warning">
+            <summary>
+            Write-Warning
+            </summary>
+            <remarks>
+            See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-warning
+            </remarks>
+        </member>
+        <member name="F:PowerShellClient.PSOutputStream.Verbose">
+            <summary>
+            Write-Verbose
+            </summary>
+            <remarks>
+            See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-verbose
+            </remarks>
+        </member>
+        <member name="F:PowerShellClient.PSOutputStream.Debug">
+            <summary>
+            Write-Debug
+            </summary>
+            <remarks>
+            See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-debug
+            </remarks>
+        </member>
+        <member name="F:PowerShellClient.PSOutputStream.Default">
+            <summary>
+            Write-Host
+            </summary>
+            <remarks>
+            See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host
+            </remarks>
+        </member>
+        <member name="T:PowerShellClient.PSUtils">
+            <summary>
+            Static Utility Methods for working with PowerShell.
+            </summary>
+        </member>
+        <member name="M:PowerShellClient.PSUtils.Stringify(System.Object)">
+            <summary>
+            Converts a random object to a string that we can write out to the console / log
+            file.
+            </summary>
+            <param name="input">The input object.</param>
+        </member>
+        <member name="M:PowerShellClient.PSUtils.EscapeVariableName(System.String)">
+            <summary>
+            Escapes a string into the raw name of a variable.
+            </summary>
+            <param name="variableName">
+            The name of the variable (without the dollar sign or escape characters).
+            </param>
+            <returns>
+            <para>
+            An escaped proper variable name (including the dollar sign and curly braces).
+            </para>
+            <para>
+            See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables
+            </para>
+            </returns>
+        </member>
+        <member name="M:PowerShellClient.PSUtils.EscapeString(System.String)">
+            <summary>
+            Escapes a raw string value into a formatted and escaped string literal that can
+            be used in a raw PowerShell script.
+            </summary>
+            <param name="rawValue">The raw string value to be escaped.</param>
+            <returns>
+            A formatted and escaped string literal that can be inserted into a powershell
+            script verbatim, includes proper quotes and escape characters.
+            </returns>
+            <remarks>
+            See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_special_characters
+            </remarks>
+        </member>
+        <member name="M:PowerShellClient.PSUtils.CreateCommand(System.String,System.Object,System.String[])">
+            <summary>
+            Creates a PowerShell <see cref="T:System.Management.Automation.Runspaces.Command" /> that can be Invoked by an object
+            that implements <see cref="T:PowerShellClient.IPSClient" />.
+            </summary>
+            <param name="cmdlet">The name of the cmdlet to invoke.</param>
+            <param name="parameters">
+            An anonymous object containing the parameters for the cmdlet.
+            </param>
+            <param name="switches">A collection of switches for the cmdlet.</param>
+        </member>
+        <member name="M:PowerShellClient.PSUtils.ConvertToDictionary(System.Object)">
+            <summary>
+            Uses reflection to convert anonymous objects, KeyValue pairs, or even regular objects
+            into dictionaries for easy inspection.
+            </summary>
+            <param name="input">The object to be converted into a dictionary.</param>
+            <returns>
+            A case-insensitive dictionary which contains the properties and values of the object
+            that was passed in.
+            </returns>
+        </member>
+        <member name="M:PowerShellClient.PSUtils.ConfigureNonInteractiveConsoleHost(PowerShellClient.IPSClient)">
+            <summary>
+            Configures a connected PowerShell session to write its output to the Console.
+            </summary>
+            <param name="ips">
+            The connected <see cref="T:PowerShellClient.IPSClient" /> instance to configure.
+            </param>
+            <returns>
+            <c>true</c> if configuration is successful; otherwise <c>false</c>.
+            </returns>
+            <remarks>
+            The PowerShell session must be open and connected, or this method will not
+            succeed; additionally if you close and re-open it, it will need to be
+            configured again.
+            </remarks>
+        </member>
+        <member name="M:PowerShellClient.PSUtils.ConfigureNonInteractiveSilentHost(PowerShellClient.IPSClient)">
+            <summary>
+            Configures a connected PowerShell session to swallow any output.
+            </summary>
+            <param name="ips">
+            The connected <see cref="T:PowerShellClient.IPSClient" /> instance to configure.
+            </param>
+            <returns>
+            <c>true</c> if configuration is successful; otherwise <c>false</c>.
+            </returns>
+            <remarks>
+            The PowerShell session must be open and connected, or this method will not
+            succeed; additionally if you close and re-open it, it will need to be
+            configured again.
+            </remarks>
+        </member>
+        <member name="M:PowerShellClient.PSUtils.GetSingleException(System.Object)">
+            <summary>
+            Converts the object into a single <see cref="T:System.Exception" />.
+            </summary>
+            <param name="input">The input object.</param>
+            <returns>An exception representatitve of the passed in object.</returns>
+        </member>
+        <member name="M:PowerShellClient.PSUtils.GetAllExceptions(System.Object)">
+            <summary>
+            Converts the object into an array of <see cref="T:System.Exception" />s; flattening any <see cref="T:System.AggregateException"/>s.
+            </summary>
+            <param name="input">The input object.</param>
+            <returns>An exception representatitve of the passed in object.</returns>
+        </member>
+    </members>
+</doc>
