@@ -3,6 +3,20 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>PowerShellClient</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Michael Jensen</Authors>
+    <Company />
+    <Product>PowerShell Client</Product>
+    <Copyright>CC0</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/BrainSlugs83/PowerShellClient</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BrainSlugs83/PowerShellClient</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>PowerShell, Remoting, Windows, Common</PackageTags>
+    <Description>A simple easy to use .NET API for interacting with PowerShell.</Description>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <PackageIcon>Logo.png</PackageIcon>
+    <PackageIconUrl />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,6 +34,17 @@
     <PackageReference Include="Moq" Version="4.13.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
