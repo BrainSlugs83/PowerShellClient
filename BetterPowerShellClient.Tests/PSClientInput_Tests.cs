@@ -14,8 +14,11 @@ namespace PowerShellClient.Tests
         [TestMethod]
         public async Task ReadLine_Tests()
         {
-            using (var client = new PSClient(PSConnectionInfo.CreateLocalConnection()))
+            using (var client = new PSClient())
             {
+                await client.OpenAsync(PSConnectionInfo.CreateLocalConnection());
+                await Task.Delay(TimeSpan.FromMilliseconds(100));
+
                 await Assert.ThrowsExceptionAsync<InvalidOperationException>(async () => await client.InvokeScriptAsync<string>("Read-Host"));
                 
                 client.ConfigureNonInteractiveConsoleHost();

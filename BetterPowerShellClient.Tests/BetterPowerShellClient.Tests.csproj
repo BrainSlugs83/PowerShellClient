@@ -96,7 +96,7 @@
     <None Include="Test.zip" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PowerShellClient\PowerShellClient.csproj">
+    <ProjectReference Include="..\BetterPowerShellClient\BetterPowerShellClient.csproj">
       <Project>{8309921c-b238-4be1-a98d-797377a93ed0}</Project>
       <Name>PowerShellClient</Name>
     </ProjectReference>

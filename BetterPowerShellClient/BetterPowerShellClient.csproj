@@ -6,7 +6,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Michael Jensen</Authors>
     <Company />
-    <Product>PowerShell Client</Product>
+    <Product>Better PowerShell Client</Product>
     <Copyright>CC0</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/BrainSlugs83/PowerShellClient</PackageProjectUrl>
@@ -17,14 +17,15 @@
     <ApplicationIcon>Logo.ico</ApplicationIcon>
     <PackageIcon>Logo.png</PackageIcon>
     <PackageIconUrl />
+    <PackageId>BetterPowerShellClient</PackageId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\projects.git\PowerShellClient\PowerShellClient\PowerShellClient.xml</DocumentationFile>
+    <DocumentationFile>C:\projects.git\PowerShellClient\BetterPowerShellClient\BetterPowerShellClient.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\projects.git\PowerShellClient\PowerShellClient\PowerShellClient.xml</DocumentationFile>
+    <DocumentationFile>C:\projects.git\PowerShellClient\BetterPowerShellClient\BetterPowerShellClient.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
