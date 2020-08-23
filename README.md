@@ -55,22 +55,33 @@ int result = client.InvokeScript<int>("5 * 24").Single();
 Console.WriteLine(result); // 120
 ```
 
-### Remote File Operations
+### PowerShell File System Operations
 
-There's a whole set of file system operations, which are super useful if you're operating against a remote machine:
+There's a whole set of file system operations tucked away into the `FileSystem` object, which can be super useful if you're operating against a remote machine (but they will work with any connection, even to the local machine), in this example, we'll push down a text file from an array of bytes:
 ```csharp
-client.FileSystem.PutFile(@"c:\path\to\file.txt", Encoding.UTF8.GetBytes("Hello, World!"));
+client.FileSystem.PutFile
+(
+    @"c:\path\to\file.txt", 
+    Encoding.UTF8.GetBytes("Hello, World!")
+);
 ```
 
-### Unziping Files
+#### Unziping Files
 You can even unzip files to a connected PowerShell client.
+
 ```csharp
 using (var ms = new MemoryStream(/* ... get zip data somehow ... */))
-using (var zip = new System.IO.Compression.ZipArchive(ms))
+using (var zipFile = new System.IO.Compression.ZipArchive(ms))
 {
-    client.FileSystem.UnzipTo(zip, @"C:\path\to\unzip\");
+    client.FileSystem.UnzipTo
+    (
+        zipFile, 
+        @"C:\path\to\unzip\"
+    );
 }
 ```
+
+Please Note: the above code won't work as-is; you'll have to actually supply a zip file for that! 😉
 
 ### Remote Connection Example
 Performing remote connections is allowed, and the API is abstracted so that all commands will work the exact same as they do if you are operating locally, be warned though, that connecting to a remote machine requires configuration on both machines (see the troubleshooting below, for a way to test if your connection is valid).
@@ -112,12 +123,14 @@ using (var client = new PSClient())
 
 If you're unable to make the Remote PowerShell stuff work, you probably have something configured wrong.  I recommend testing that your configuration works via the PowerShell ISE, using the following script:
 ```ps
-
+# ==================== Configure Me! ====================
 $computerName = "SomeComputer.westus.cloudapp.azure.com";
 $port = 3389;
-
 $user = "UserName";
-$pwd = ("My Completely Insecure Password" | ConvertTo-SecureString -AsPlainText -Force);
+$rawPwd = "My Completely Insecure Password";
+# =======================================================
+
+$pwd = ($rawPwd | ConvertTo-SecureString -AsPlainText -Force);
 
 $cred = New-Object -TypeName System.Management.Automation.PSCredential `
     -ArgumentList $user, $pwd;
