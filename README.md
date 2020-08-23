@@ -55,6 +55,26 @@ int result = client.InvokeScript<int>("5 * 24").Single();
 Console.WriteLine(result); // 120
 ```
 
+In PowerShell, all commands return a stack of objects -- so in the above sample, we're using the LINQ extension method `.Single()` to get back the single result.
+
+Note that, even if your command doesn't use a `return` statement explicitly, that PowerShell will put any non-consumed objects on to the stack.
+
+When invoking a command, if you ask for a result back, we will try to convert the stack into the type you specify and return all of the matching items to you.
+
+But just like in regular PowerShell, for any item that is not consumed, it will be eventually be written to the console instead.
+
+For example, this code will consume the stack of files handed back by the "dir" command and return them to your C# code.
+```csharp
+var files = client.InvokeCommand<FileSystemInfo>("dir");
+```
+
+Whereas this command (the exact same PowerShell command), leaves the items on the stack, so they will be output to the screen instead (assuming you've configured your ConsoleHost):
+```csharp
+client.InvokeCommand("dir");
+```
+
+(In case it's not clear, storing the results in the `files` variable is not 100% necessary here, just specifying the result type by calling the generic version of the method is all we have to do to signal that we want to consume the output, of course.)
+
 ### PowerShell File System Operations
 
 There's a whole set of file system operations tucked away into the `FileSystem` object, which can be super useful if you're operating against a remote machine (but they will work with any connection, even to the local machine), in this example, we'll push down a text file from an array of bytes:
