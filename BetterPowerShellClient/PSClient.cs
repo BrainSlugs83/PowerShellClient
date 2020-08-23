@@ -27,7 +27,7 @@ namespace PowerShellClient
         {
             if (input == null || typeof(NoResult).IsAssignableFrom(typeof(T)))
             {
-                output = default(T);
+                output = default;
                 return typeof(T).IsClass;
             }
             else
@@ -69,7 +69,7 @@ namespace PowerShellClient
                 }
             }
 
-            output = default(T);
+            output = default;
             return false;
         }
 
@@ -100,8 +100,8 @@ namespace PowerShellClient
         /// <remarks>
         /// <para>Overwritten every time the object is connected.</para>
         /// <para>
-        /// It's possible for this to be <c>null</c> (even when connected); so check the
-        /// returned object before consuming it.
+        /// It's possible for this to be <c>null</c> (even when connected); so check the returned
+        /// object before consuming it.
         /// </para>
         /// </remarks>
         public PSClientHostUI HostUI
@@ -115,9 +115,7 @@ namespace PowerShellClient
         /// <summary>
         /// Tests that a given connection is valid and can be opened.
         /// </summary>
-        /// <param name="connectionInfo">
-        /// The connection information.
-        /// </param>
+        /// <param name="connectionInfo">The connection information.</param>
         public bool TestConnection(PSConnectionInfo connectionInfo)
         {
             if (connectionInfo == null) { throw new ArgumentNullException(nameof(connectionInfo)); }
@@ -145,9 +143,7 @@ namespace PowerShellClient
         /// <summary>
         /// Tests that a given connection is valid and can be opened, asynchronously.
         /// </summary>
-        /// <param name="connectionInfo">
-        /// The connection information.
-        /// </param>
+        /// <param name="connectionInfo">The connection information.</param>
         public async Task<bool> TestConnectionAsync(PSConnectionInfo connectionInfo)
         {
             if (connectionInfo == null) { throw new ArgumentNullException(nameof(connectionInfo)); }
@@ -187,9 +183,7 @@ namespace PowerShellClient
         /// <summary>
         /// Initializes a new instance of the <see cref="PSClient" /> class to a connected state.
         /// </summary>
-        /// <param name="connectionInfo">
-        /// The connection information.
-        /// </param>
+        /// <param name="connectionInfo">The connection information.</param>
         public PSClient(PSConnectionInfo connectionInfo)
         {
             Open(connectionInfo);
@@ -200,9 +194,7 @@ namespace PowerShellClient
         /// <summary>
         /// Closes the connection, asynchronously (if open).
         /// </summary>
-        /// <remarks>
-        /// Must not fail or throw.
-        /// </remarks>
+        /// <remarks>Must not fail or throw.</remarks>
         public async Task CloseAsync()
         {
             await Task.Run(() => Close());
@@ -211,20 +203,16 @@ namespace PowerShellClient
         /// <summary>
         /// Opens the connection, asynchronously.
         /// </summary>
-        /// <param name="connectionInfo">
-        /// The connection information.
-        /// </param>
+        /// <param name="connectionInfo">The connection information.</param>
         public async Task OpenAsync(PSConnectionInfo connectionInfo)
         {
             await Task.Run(() => Open(connectionInfo));
         }
 
-        // <summary>
+        /// <summary>
         /// Closes the connection (if open).
         /// </summary>
-        /// <remarks>
-        /// Must not fail or throw.
-        /// </remarks>
+        /// <remarks>Must not fail or throw.</remarks>
         public void Close()
         {
             try
@@ -243,9 +231,7 @@ namespace PowerShellClient
         /// <summary>
         /// Opens the connection.
         /// </summary>
-        /// <param name="connectionInfo">
-        /// The connection information.
-        /// </param>
+        /// <param name="connectionInfo">The connection information.</param>
         public void Open(PSConnectionInfo connectionInfo)
         {
             if (connectionInfo == null) { throw new ArgumentNullException(nameof(connectionInfo)); }
@@ -296,13 +282,9 @@ namespace PowerShellClient
         /// <summary>
         /// Invokes a PowerShell command.
         /// </summary>
-        /// <typeparam name="T">
-        /// The type of results to return from the output stream.
-        /// </typeparam>
+        /// <typeparam name="T">The type of results to return from the output stream.</typeparam>
         /// <param name="cmdlet">The name of the cmdlet to invoke.</param>
-        /// <param name="parameters">
-        /// An anonymous object containing the parameters for the cmdlet.
-        /// </param>
+        /// <param name="parameters">An anonymous object containing the parameters for the cmdlet.</param>
         /// <param name="switches">A collection of switches for the cmdlet.</param>
         public ICollection<T> InvokeCommand<T>(string cmdlet, object parameters = null, params string[] switches)
         {
@@ -313,9 +295,7 @@ namespace PowerShellClient
         /// Invokes a PowerShell command.
         /// </summary>
         /// <param name="cmdlet">The name of the cmdlet to invoke.</param>
-        /// <param name="parameters">
-        /// An anonymous object containing the parameters for the cmdlet.
-        /// </param>
+        /// <param name="parameters">An anonymous object containing the parameters for the cmdlet.</param>
         /// <param name="switches">A collection of switches for the cmdlet.</param>
         public void InvokeCommand(string cmdlet, object parameters = null, params string[] switches)
         {
@@ -325,13 +305,9 @@ namespace PowerShellClient
         /// <summary>
         /// Invokes a PowerShell command asynchronously.
         /// </summary>
-        /// <typeparam name="T">
-        /// The type of results to return from the output stream.
-        /// </typeparam>
+        /// <typeparam name="T">The type of results to return from the output stream.</typeparam>
         /// <param name="cmdlet">The name of the cmdlet to invoke.</param>
-        /// <param name="parameters">
-        /// An anonymous object containing the parameters for the cmdlet.
-        /// </param>
+        /// <param name="parameters">An anonymous object containing the parameters for the cmdlet.</param>
         /// <param name="switches">A collection of switches for the cmdlet.</param>
         public async Task<ICollection<T>> InvokeCommandAsync<T>(string cmdlet, object parameters = null, params string[] switches)
         {
@@ -342,9 +318,7 @@ namespace PowerShellClient
         /// Invokes a PowerShell command asynchronously.
         /// </summary>
         /// <param name="cmdlet">The name of the cmdlet to invoke.</param>
-        /// <param name="parameters">
-        /// An anonymous object containing the parameters for the cmdlet.
-        /// </param>
+        /// <param name="parameters">An anonymous object containing the parameters for the cmdlet.</param>
         /// <param name="switches">A collection of switches for the cmdlet.</param>
         public async Task InvokeCommandAsync(string cmdlet, object parameters = null, params string[] switches)
         {
@@ -358,9 +332,7 @@ namespace PowerShellClient
         /// <summary>
         /// Invokes a PowerShell command.
         /// </summary>
-        /// <typeparam name="T">
-        /// The type of results to return from the output stream.
-        /// </typeparam>
+        /// <typeparam name="T">The type of results to return from the output stream.</typeparam>
         /// <param name="command">The PowerShell command to invoke.</param>
         public ICollection<T> InvokeCommand<T>(Command command)
         {
@@ -379,9 +351,7 @@ namespace PowerShellClient
         /// <summary>
         /// Invokes a PowerShell command asynchronously.
         /// </summary>
-        /// <typeparam name="T">
-        /// The type of results to return from the output stream.
-        /// </typeparam>
+        /// <typeparam name="T">The type of results to return from the output stream.</typeparam>
         /// <param name="command">The PowerShell command to invoke.</param>
         public async Task<ICollection<T>> InvokeCommandAsync<T>(Command command)
         {
@@ -413,9 +383,7 @@ namespace PowerShellClient
         /// <summary>
         /// Invokes a collection of PowerShell command(s), as if they were piped together.
         /// </summary>
-        /// <typeparam name="T">
-        /// The type of results to return from the output stream.
-        /// </typeparam>
+        /// <typeparam name="T">The type of results to return from the output stream.</typeparam>
         /// <param name="commands">The PowerShell commands to invoke.</param>
         public ICollection<T> InvokePipedCommands<T>(params Command[] commands)
         {
@@ -437,19 +405,22 @@ namespace PowerShellClient
                         }
                     }
 
-                    //
                     // ******* WOW -- THIS IS SUBTLE -- DON'T FUCK IT UP. *******
                     //
-                    // "... If you want this pipeline to execute as a standalone
-                    // command(that is, using command-line parameters only), be sure to
-                    // call Pipeline.Input.Close() before calling InvokeAsync(). Otherwise,
-                    // the command will be executed as though it had external input. If you
-                    // observe that the command isn't doing anything, this may be the
-                    // reason."
+                    // "... If you want this pipeline to execute as a standalone command(that is,
+                    // using command-line parameters only), be sure to call Pipeline.Input.Close()
+                    // before calling InvokeAsync(). Otherwise, the command will be executed as
+                    // though it had external input. If you observe that the command isn't doing
+                    // anything, this may be the reason."
                     // via: https://docs.microsoft.com/en-us/dotnet/api/system.management.automation.runspaces.pipeline.invokeasync?view=powershellsdk-1.1.0
 
                     pipeline.Input.Close();
                     pipeline.InvokeAsync();
+
+                    // Please note that the effects of fucking this up might not be apparent at
+                    // first glance, things might appear to be working okay (hence the, "Wow, this
+                    // is subtle" comment) -- but if you do fuck it up, it will eventually cause
+                    // weird, VERY hard to reproduce hangs.
 
                     var results = new List<T>();
                     var errors = new List<object>();
@@ -540,9 +511,7 @@ namespace PowerShellClient
         /// <summary>
         /// Invokes PowerShell command(s) asynchronously.
         /// </summary>
-        /// <typeparam name="T">
-        /// The type of results to return from the output stream.
-        /// </typeparam>
+        /// <typeparam name="T">The type of results to return from the output stream.</typeparam>
         /// <param name="commands">The PowerShell commands to invoke.</param>
         public async Task<ICollection<T>> InvokeCommandsAsync<T>(params Command[] commands)
         {
@@ -565,9 +534,7 @@ namespace PowerShellClient
         /// <summary>
         /// Invokes an arbitrary block of PowerShell script.
         /// </summary>
-        /// <typeparam name="T">
-        /// The type of results to return from the output stream.
-        /// </typeparam>
+        /// <typeparam name="T">The type of results to return from the output stream.</typeparam>
         /// <param name="script">The PowerShell script block.</param>
         public ICollection<T> InvokeScript<T>(string script)
         {
@@ -586,9 +553,7 @@ namespace PowerShellClient
         /// <summary>
         /// Invokes an arbitrary PowerShell script block, asynchronously.
         /// </summary>
-        /// <typeparam name="T">
-        /// The type of results to return from the output stream.
-        /// </typeparam>
+        /// <typeparam name="T">The type of results to return from the output stream.</typeparam>
         /// <param name="script">The PowerShell script block.</param>
         public async Task<ICollection<T>> InvokeScriptAsync<T>(string script)
         {
@@ -623,8 +588,8 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or
-        /// resetting unmanaged resources.
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting
+        /// unmanaged resources.
         /// </summary>
         public void Dispose()
         {

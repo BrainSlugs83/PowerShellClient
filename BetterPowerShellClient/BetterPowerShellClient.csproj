@@ -18,14 +18,17 @@
     <PackageIcon>Logo.png</PackageIcon>
     <PackageIconUrl />
     <PackageId>BetterPowerShellClient</PackageId>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\projects.git\PowerShellClient\BetterPowerShellClient\BetterPowerShellClient.xml</DocumentationFile>
+    <NoWarn>1701;1702;NU1701</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\projects.git\PowerShellClient\BetterPowerShellClient\BetterPowerShellClient.xml</DocumentationFile>
+    <NoWarn>1701;1702;NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -47,5 +50,4 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
-
 </Project>

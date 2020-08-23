@@ -21,30 +21,27 @@ namespace PowerShellClient
         /// <summary>
         /// Gets or sets a value indicating whether or not a secure connection is required.
         /// </summary>
-        /// <value>
-        /// <c>true</c> if a secure connection is required; otherwise <c>false</c>.
-        /// </value>
+        /// <value><c>true</c> if a secure connection is required; otherwise <c>false</c>.</value>
         /// <remarks>
-        /// Note that if <see cref="RequireValidCertificate">RequireValidCertificate</see> is set to <c>false</c>, that the 
-        /// connection isn't really secure.  It's just using a secure port and protocol (in an insecure way).
+        /// Note that if <see cref="RequireValidCertificate">RequireValidCertificate</see> is set to
+        /// <c>false</c>, that the connection isn't really secure. It's just using a secure port and
+        /// protocol (in an insecure way).
         /// </remarks>
         public bool UseSecurePowerShell { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets a value indicating whether the SSL certificate must be validated
-        /// or not.
+        /// Gets or sets a value indicating whether the SSL certificate must be validated or not.
         /// </summary>
         /// <remarks>
-        /// This is set to false by default, as it requires a fair bit of setup to get it to work on a given machine.
+        /// This is set to false by default, as it requires a fair bit of setup to get it to work on
+        /// a given machine.
         /// </remarks>
         public bool RequireValidCertificate { get; set; } = false;
 
         /// <summary>
         /// Gets or sets the Remote Computer Address.
         /// </summary>
-        /// <value>
-        /// IP Address, Machine Name (local network), FQDN, etc. of the remote computer.
-        /// </value>
+        /// <value>IP Address, Machine Name (local network), FQDN, etc. of the remote computer.</value>
         public string ComputerAddress { get; set; }
 
         /// <summary>
@@ -94,14 +91,15 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// Creates Remote PowerShell Connection Information for a given computer, using a
-        /// standard UserName and Password combination.
+        /// Creates Remote PowerShell Connection Information for a given computer, using a standard
+        /// UserName and Password combination.
         /// </summary>
         /// <param name="computerAddress">
         /// The computer address (IP Address, Machine Name (local network), FQDN, etc.)
         /// </param>
         /// <param name="userName">The UserName to connect with.</param>
         /// <param name="password">The Password to connect with.</param>
+        /// <param name="customPort">(Optional) a custom port number to use.</param>
         public static PSConnectionInfo CreateRemoteConnection
         (
             string computerAddress,
@@ -128,9 +126,8 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// Creates a <see cref="PSConnectionInfo" /> object that represents a
-        /// connection to the local machine (i.e. allows you to use to library for
-        /// non-remote connections).
+        /// Creates a <see cref="PSConnectionInfo" /> object that represents a connection to the
+        /// local machine (i.e. allows you to use to library for non-remote connections).
         /// </summary>
         public static PSConnectionInfo CreateLocalConnection()
         {
@@ -183,9 +180,7 @@ namespace PowerShellClient
         /// <summary>
         /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
-        /// <returns>
-        /// A <see cref="string" /> that represents this instance.
-        /// </returns>
+        /// <returns>A <see cref="string" /> that represents this instance.</returns>
         public override string ToString()
         {
             string result = ComputerAddress;
@@ -204,7 +199,8 @@ namespace PowerShellClient
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        /// A hash code for this instance, suitable for use in hashing algorithms and data
+        /// structures like a hash table.
         /// </returns>
         public override int GetHashCode()
         {

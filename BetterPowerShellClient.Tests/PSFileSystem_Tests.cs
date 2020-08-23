@@ -22,14 +22,28 @@ namespace PowerShellClient.Tests
         [TestMethod]
         public async Task PutFile_Tests()
         {
-            await PutFile(@"C:\temp\test.txt");
-            await PutFile(@"C:\temp\[test].txt");
+            await PutFile(@"C:\temp\1\test.txt", false);
+            await PutFile(@"C:\temp\1\[test].txt", false);
         }
 
-        public async Task PutFile(string path)
+        [TestMethod]
+        public async Task SafePutFile_Tests()
+        {
+            await PutFile(@"C:\temp\2\test.txt", true);
+            await PutFile(@"C:\temp\2\[test].txt", true);
+        }
+
+        public static async Task PutFile(string path, bool forceSafety)
         {
             using (var client = new PSClient(PSConnectionInfo.CreateLocalConnection()))
             {
+                client.FileSystem.ForceSafety = forceSafety;
+
+                if (client.FileSystem.PathExists(path, true, false))
+                {
+                    await client.FileSystem.DeleteFileAsync(path);
+                }
+
                 await client.FileSystem.PutFileAsync(path, Encoding.UTF8.GetBytes("HELLO WORLD!"), true);
                 Assert.IsTrue(await client.FileSystem.PathExistsAsync(path, true, false));
                 Assert.IsTrue(File.Exists(path));
@@ -40,9 +54,6 @@ namespace PowerShellClient.Tests
                 Assert.IsFalse(await client.FileSystem.PathExistsAsync(path, true, false));
                 Assert.IsFalse(File.Exists(path));
             }
-
-
         }
-
     }
 }

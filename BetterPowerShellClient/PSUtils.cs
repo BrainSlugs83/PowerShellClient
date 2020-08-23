@@ -22,8 +22,7 @@ namespace PowerShellClient
     public static class PSUtils
     {
         /// <summary>
-        /// Converts a random object to a string that we can write out to the console / log
-        /// file.
+        /// Converts a random object to a string that we can write out to the console / log file.
         /// </summary>
         /// <param name="input">The input object.</param>
         public static string Stringify(object input)
@@ -63,12 +62,8 @@ namespace PowerShellClient
         /// The name of the variable (without the dollar sign or escape characters).
         /// </param>
         /// <returns>
-        /// <para>
-        /// An escaped proper variable name (including the dollar sign and curly braces).
-        /// </para>
-        /// <para>
-        /// See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables
-        /// </para>
+        /// <para>An escaped proper variable name (including the dollar sign and curly braces).</para>
+        /// <para>See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables</para>
         /// </returns>
         public static string EscapeVariableName(string variableName)
         {
@@ -79,17 +74,15 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// Escapes a raw string value into a formatted and escaped string literal that can
-        /// be used in a raw PowerShell script.
+        /// Escapes a raw string value into a formatted and escaped string literal that can be used
+        /// in a raw PowerShell script.
         /// </summary>
         /// <param name="rawValue">The raw string value to be escaped.</param>
         /// <returns>
-        /// A formatted and escaped string literal that can be inserted into a powershell
-        /// script verbatim, includes proper quotes and escape characters.
+        /// A formatted and escaped string literal that can be inserted into a powershell script
+        /// verbatim, includes proper quotes and escape characters.
         /// </returns>
-        /// <remarks>
-        /// See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_special_characters
-        /// </remarks>
+        /// <remarks>See: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_special_characters</remarks>
         public static string EscapeString(string rawValue) => EscapeString(rawValue, 0);
 
         internal static string EscapeString(string rawValue, int bracketEscapeTickCount)
@@ -133,13 +126,11 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// Creates a PowerShell <see cref="Command" /> that can be Invoked by an object
-        /// that implements <see cref="IPSClient" />.
+        /// Creates a PowerShell <see cref="Command" /> that can be Invoked by an object that
+        /// implements <see cref="IPSClient" />.
         /// </summary>
         /// <param name="cmdlet">The name of the cmdlet to invoke.</param>
-        /// <param name="parameters">
-        /// An anonymous object containing the parameters for the cmdlet.
-        /// </param>
+        /// <param name="parameters">An anonymous object containing the parameters for the cmdlet.</param>
         /// <param name="switches">A collection of switches for the cmdlet.</param>
         public static Command CreateCommand
         (
@@ -225,7 +216,7 @@ namespace PowerShellClient
                         )
                         .FirstOrDefault();
 
-                        result[prop.Name] = getter.Invoke(input, new object[0]);
+                        result[prop.Name] = getter.Invoke(input, Array.Empty<object>());
                     }
                 }
             }
@@ -236,16 +227,11 @@ namespace PowerShellClient
         /// <summary>
         /// Configures a connected PowerShell session to write its output to the Console.
         /// </summary>
-        /// <param name="ips">
-        /// The connected <see cref="IPSClient" /> instance to configure.
-        /// </param>
-        /// <returns>
-        /// <c>true</c> if configuration is successful; otherwise <c>false</c>.
-        /// </returns>
+        /// <param name="ips">The connected <see cref="IPSClient" /> instance to configure.</param>
+        /// <returns><c>true</c> if configuration is successful; otherwise <c>false</c>.</returns>
         /// <remarks>
-        /// The PowerShell session must be open and connected, or this method will not
-        /// succeed; additionally if you close and re-open it, it will need to be
-        /// configured again.
+        /// The PowerShell session must be open and connected, or this method will not succeed;
+        /// additionally if you close and re-open it, it will need to be configured again.
         /// </remarks>
         public static bool ConfigureNonInteractiveConsoleHost(this IPSClient ips)
         {
@@ -372,16 +358,11 @@ namespace PowerShellClient
         /// <summary>
         /// Configures a connected PowerShell session to swallow any output.
         /// </summary>
-        /// <param name="ips">
-        /// The connected <see cref="IPSClient" /> instance to configure.
-        /// </param>
-        /// <returns>
-        /// <c>true</c> if configuration is successful; otherwise <c>false</c>.
-        /// </returns>
+        /// <param name="ips">The connected <see cref="IPSClient" /> instance to configure.</param>
+        /// <returns><c>true</c> if configuration is successful; otherwise <c>false</c>.</returns>
         /// <remarks>
-        /// The PowerShell session must be open and connected, or this method will not
-        /// succeed; additionally if you close and re-open it, it will need to be
-        /// configured again.
+        /// The PowerShell session must be open and connected, or this method will not succeed;
+        /// additionally if you close and re-open it, it will need to be configured again.
         /// </remarks>
         public static bool ConfigureNonInteractiveSilentHost(this IPSClient ips)
         {
@@ -486,7 +467,8 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// Converts the object into an array of <see cref="Exception" />s; flattening any <see cref="AggregateException"/>s.
+        /// Converts the object into an array of <see cref="Exception" /> s; flattening any <see
+        /// cref="AggregateException" /> s.
         /// </summary>
         /// <param name="input">The input object.</param>
         /// <returns>An exception representatitve of the passed in object.</returns>

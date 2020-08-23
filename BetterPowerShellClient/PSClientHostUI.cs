@@ -23,8 +23,7 @@ namespace PowerShellClient
     public class PSClientHostUI : PSHostUserInterface
     {
         /// <summary>
-        /// Gets or sets the prompt callback; argument names: caption, message,
-        /// descriptions.
+        /// Gets or sets the prompt callback; argument names: caption, message, descriptions.
         /// </summary>
         public Func<string, string, Collection<FieldDescription>, Dictionary<string, PSObject>> PromptCallback { get; set; }
 
@@ -35,14 +34,13 @@ namespace PowerShellClient
         public Action<PSOutputStream, ConsoleColor?, ConsoleColor?, string> WriteCallback { get; set; }
 
         /// <summary>
-        /// Gets or sets the prompt for choice callback; argument names: caption, message,
-        /// choices, defaultChoice.
+        /// Gets or sets the prompt for choice callback; argument names: caption, message, choices, defaultChoice.
         /// </summary>
         public Func<string, string, Collection<ChoiceDescription>, int, int> PromptForChoiceCallback { get; set; }
 
         /// <summary>
-        /// Gets or sets the prompt for credentials callback; argument names: caption,
-        /// message, userName, targetName, allowedCredentialTypes, options.
+        /// Gets or sets the prompt for credentials callback; argument names: caption, message,
+        /// userName, targetName, allowedCredentialTypes, options.
         /// </summary>
         public Func<string, string, string, string, PSCredentialTypes, PSCredentialUIOptions, PSCredential> PromptForCredentialsCallback { get; set; }
 
@@ -56,7 +54,7 @@ namespace PowerShellClient
         /// </summary>
         public Action<long, ProgressRecord> WriteProgressCallback { get; set; }
 
-        private PSHostRawUserInterface rawUi;
+        private readonly PSHostRawUserInterface rawUi;
 
         /// <summary>
         /// Gets the PowerShell Host Raw User Interface Object.
@@ -64,8 +62,7 @@ namespace PowerShellClient
         public override PSHostRawUserInterface RawUI => rawUi;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PSClientHostUI"
-        /// /> class.
+        /// Initializes a new instance of the <see cref="PSClientHostUI" /> class.
         /// </summary>
         public PSClientHostUI()
         {
@@ -80,8 +77,8 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// Appends the specified message to the running log without any newlines, etc.
-        /// (Might be a partial line.)
+        /// Appends the specified message to the running log without any newlines, etc. (Might be a
+        /// partial line.)
         /// </summary>
         /// <param name="level">The write level.</param>
         /// <param name="foregroundColor">The foreground color of the display.</param>
@@ -121,14 +118,14 @@ namespace PowerShellClient
         /// </param>
         /// <returns>
         /// A dictionary of types <see cref="string" /> and <see cref="PSObject" /> that contains
-        /// the results of the user prompts. The keys of the dictionary are the field names from 
-        /// the FieldDescription objects. The dictionary values are objects that represent the 
-        /// values of the corresponding fields as collected from the user.
+        /// the results of the user prompts. The keys of the dictionary are the field names from the
+        /// FieldDescription objects. The dictionary values are objects that represent the values of
+        /// the corresponding fields as collected from the user.
         /// </returns>
         public override Dictionary<string, PSObject> Prompt
         (
-            string caption, 
-            string message, 
+            string caption,
+            string message,
             Collection<FieldDescription> descriptions
         )
         {
@@ -137,7 +134,7 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, provides a set of choices that enable the user to 
+        /// When overridden in a derived class, provides a set of choices that enable the user to
         /// choose a single option from a set of options.
         /// </summary>
         /// <param name="caption">The text that precedes (a title) the choices.</param>
@@ -147,14 +144,14 @@ namespace PowerShellClient
         /// </param>
         /// <param name="defaultChoice">The default choice.</param>
         /// <returns>
-        /// The index of the Choices parameter collection element that corresponds to the option 
+        /// The index of the Choices parameter collection element that corresponds to the option
         /// that is selected by the user.
         /// </returns>
         public override int PromptForChoice
         (
-            string caption, 
-            string message, 
-            Collection<ChoiceDescription> choices, 
+            string caption,
+            string message,
+            Collection<ChoiceDescription> choices,
             int defaultChoice
         )
         {
@@ -163,8 +160,8 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, prompts the user for credentials with a
-        /// specified prompt window caption, prompt message, user name, and target name.
+        /// When overridden in a derived class, prompts the user for credentials with a specified
+        /// prompt window caption, prompt message, user name, and target name.
         /// </summary>
         /// <param name="caption">The caption for the message window.</param>
         /// <param name="message">The text of the message.</param>
@@ -172,12 +169,9 @@ namespace PowerShellClient
         /// The user name whose credential is to be prompted for. If this parameter set to
         /// <c>null</c> or an empty string, the function prompts for the user name first.
         /// </param>
-        /// <param name="targetName">
-        /// The name of the target for which the credential is collected.
-        /// </param>
+        /// <param name="targetName">The name of the target for which the credential is collected.</param>
         /// <returns>
-        /// A <see cref="PSCredential" /> object that contains the credentials for the
-        /// target.
+        /// A <see cref="PSCredential" /> object that contains the credentials for the target.
         /// </returns>
         public override PSCredential PromptForCredential
         (
@@ -199,25 +193,23 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, prompts the user for credentials by using a 
+        /// When overridden in a derived class, prompts the user for credentials by using a
         /// specified prompt window caption, prompt message, user name and target name, credential
         /// types allowed to be returned, and UI behavior options.
         /// </summary>
         /// <param name="caption">The caption for the message window.</param>
         /// <param name="message">The text of the message.</param>
         /// <param name="userName">
-        /// The user name whose credential is to be prompted for. If this parameter set to 
+        /// The user name whose credential is to be prompted for. If this parameter set to
         /// <c>null</c> or an empty string, the function prompts for the user name first.
         /// </param>
-        /// <param name="targetName">
-        /// The name of the target for which the credential is collected.
-        /// </param>
+        /// <param name="targetName">The name of the target for which the credential is collected.</param>
         /// <param name="allowedCredentialTypes">
-        /// A bitwise combination of the <see cref="PSCredentialTypes" /> enumeration values that 
+        /// A bitwise combination of the <see cref="PSCredentialTypes" /> enumeration values that
         /// identify the types of credentials that can be returned.
         /// </param>
         /// <param name="options">
-        /// A bitwise combination of the <see cref="PSCredentialUIOptions" /> enumeration values 
+        /// A bitwise combination of the <see cref="PSCredentialUIOptions" /> enumeration values
         /// that identify the UI behavior when it gathers the credentials.
         /// </param>
         /// <returns>
@@ -246,8 +238,8 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, reads characters that are entered by the
-        /// user until a newline (carriage return) character is encountered.
+        /// When overridden in a derived class, reads characters that are entered by the user until
+        /// a newline (carriage return) character is encountered.
         /// </summary>
         /// <returns>The characters that are entered by the user.</returns>
         public override string ReadLine()
@@ -257,13 +249,11 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, reads characters entered by the user until
-        /// a newline (carriage return) character is encountered and returns the characters
-        /// as a secure string.
+        /// When overridden in a derived class, reads characters entered by the user until a newline
+        /// (carriage return) character is encountered and returns the characters as a secure string.
         /// </summary>
         /// <returns>
-        /// A SecureString object that contains the characters that are entered by the
-        /// user.
+        /// A SecureString object that contains the characters that are entered by the user.
         /// </returns>
         public override SecureString ReadLineAsSecureString()
         {
@@ -271,8 +261,7 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, writes characters to the output display of
-        /// the host.
+        /// When overridden in a derived class, writes characters to the output display of the host.
         /// </summary>
         /// <param name="value">The value.</param>
         public override void Write(string value)
@@ -281,16 +270,16 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, writes characters to the output display of
-        /// the host with possible foreground and background colors.
+        /// When overridden in a derived class, writes characters to the output display of the host
+        /// with possible foreground and background colors.
         /// </summary>
         /// <param name="foregroundColor">The foreground color of the display.</param>
         /// <param name="backgroundColor">The background color of the display.</param>
         /// <param name="value">The characters to be written.</param>
         public override void Write
         (
-            ConsoleColor foregroundColor, 
-            ConsoleColor backgroundColor, 
+            ConsoleColor foregroundColor,
+            ConsoleColor backgroundColor,
             string value
         )
         {
@@ -307,8 +296,7 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, writes a line to the error display of the
-        /// host.
+        /// When overridden in a derived class, writes a line to the error display of the host.
         /// </summary>
         /// <param name="message">Error message to be displayed.</param>
         public override void WriteErrorLine(string message)
@@ -317,8 +305,8 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, writes a line of characters to the output
-        /// display of the host and appends a newline (carriage return) character.
+        /// When overridden in a derived class, writes a line of characters to the output display of
+        /// the host and appends a newline (carriage return) character.
         /// </summary>
         /// <param name="value">The line of characters to be written.</param>
         public override void WriteLine(string value)
@@ -327,8 +315,7 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, writes a progress report to be displayed to
-        /// the user.
+        /// When overridden in a derived class, writes a progress report to be displayed to the user.
         /// </summary>
         /// <param name="sourceId">A unique identifier of the source of the record.</param>
         /// <param name="record">
@@ -341,8 +328,7 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, writes a verbose line to be displayed to
-        /// the user.
+        /// When overridden in a derived class, writes a verbose line to be displayed to the user.
         /// </summary>
         /// <param name="message">The verbose message to be displayed.</param>
         public override void WriteVerboseLine(string message)
@@ -351,8 +337,7 @@ namespace PowerShellClient
         }
 
         /// <summary>
-        /// When overridden in a derived class, writes a warning line to be displayed to
-        /// the user.
+        /// When overridden in a derived class, writes a warning line to be displayed to the user.
         /// </summary>
         /// <param name="message">The warning message to be displayed.</param>
         public override void WriteWarningLine(string message)

@@ -16,7 +16,8 @@ namespace PowerShellClient.Tests
     [ExcludeFromCodeCoverage]
     public class PSClient_Tests
     {
-        public static string GetThisFilePath([CallerFilePath]string filePath = null) => filePath;
+        public static string GetThisFilePath([CallerFilePath] string filePath = null) => filePath;
+
         public static string GetZipFilePath() => Path.Combine(Path.GetDirectoryName(GetThisFilePath()), "Test.zip");
 
         [TestMethod]
@@ -123,17 +124,24 @@ namespace PowerShellClient.Tests
         [TestMethod]
         public async Task UnzipFile_Tests()
         {
-            await UnzipFile(GetZipFilePath());
+            await UnzipFile(GetZipFilePath(), false);
         }
 
-        public async Task UnzipFile(string fileName)
+        [TestMethod]
+        public async Task SafeUnzipFile_Tests()
         {
-            var outputPath = Path.Combine(@"C:\Temp\", Path.GetFileNameWithoutExtension(fileName));
+            await UnzipFile(GetZipFilePath(), true);
+        }
+
+        public static async Task UnzipFile(string fileName, bool forceSafety, [CallerMemberName] string caller = null)
+        {
+            var outputPath = Path.Combine(@$"C:\Temp\{caller}\", Path.GetFileNameWithoutExtension(fileName));
 
             using (var client = new PSClient(PSConnectionInfo.CreateLocalConnection()))
             using (var ms = new MemoryStream(File.ReadAllBytes(fileName)))
             using (var zar = new ZipArchive(ms))
             {
+                client.FileSystem.ForceSafety = forceSafety;
                 await client.FileSystem.DeleteFolderRecursivelyAsync(outputPath);
                 Assert.IsFalse(Directory.Exists(outputPath), $"Directory {outputPath} was not removed!");
                 client.ConfigureNonInteractiveSilentHost();
@@ -181,13 +189,13 @@ namespace PowerShellClient.Tests
             }
         }
 
-        public async Task ReadFile(string path)
+        public static async Task ReadFile(string path)
         {
             var contents = File.ReadAllText(path);
             await ReadFile(path, contents);
         }
 
-        public async Task GetHash(string path)
+        public static async Task GetHash(string path)
         {
             string hash;
             using (var s = File.OpenRead(path))
@@ -201,7 +209,7 @@ namespace PowerShellClient.Tests
             await GetHash(path, hash);
         }
 
-        public async Task ReadFile(string path, string contents)
+        public static async Task ReadFile(string path, string contents)
         {
             Assert.IsFalse(path.IsNullOrWhiteSpace());
             Assert.IsFalse(contents.IsNullOrWhiteSpace());
@@ -213,7 +221,7 @@ namespace PowerShellClient.Tests
             }
         }
 
-        public async Task GetHash(string path, string md5)
+        public static async Task GetHash(string path, string md5)
         {
             Assert.IsFalse(path.IsNullOrWhiteSpace());
             Assert.IsFalse(md5.IsNullOrWhiteSpace());

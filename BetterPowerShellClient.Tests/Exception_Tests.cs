@@ -17,7 +17,7 @@ namespace PowerShellClient.Tests
         public void ExceptionExploder_Tests()
         {
             Assert.AreEqual(0, PSUtils.GetAllExceptions(null).Count());
-            Assert.AreEqual(0, PSUtils.GetAllExceptions(new object[] { }).Count());
+            Assert.AreEqual(0, PSUtils.GetAllExceptions(Array.Empty<object>()).Count());
 
             Assert.AreEqual(1, PSUtils.GetAllExceptions("Hello World").Count());
             Assert.AreEqual(2, PSUtils.GetAllExceptions(new object[] { "Hello World", new Exception("Goodbye, World") }).Count());
@@ -70,7 +70,6 @@ namespace PowerShellClient.Tests
             Assert.IsTrue(ex is AggregateException);
             Assert.AreEqual(2, (ex as AggregateException).InnerExceptions.Count);
             Assert.AreEqual(2, PSUtils.GetAllExceptions(ex).Count());
-
         }
     }
 }

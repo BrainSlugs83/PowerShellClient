@@ -8,9 +8,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PowerShellClient.Tests
 {
+#pragma warning disable CA1063 // Implement IDisposable Correctly
+
+    [ExcludeFromCodeCoverage]
     public class Disposable : IDisposable
     {
-        Action disposeCallback;
+        private Action disposeCallback;
 
         public Disposable(Action disposeCallback)
         {
@@ -23,6 +26,8 @@ namespace PowerShellClient.Tests
             disposeCallback = null;
         }
     }
+
+#pragma warning restore CA1063 // Implement IDisposable Correctly
 
     [TestClass]
     [ExcludeFromCodeCoverage]
@@ -39,7 +44,7 @@ namespace PowerShellClient.Tests
         public void MultipleDispose_Tests()
         {
             int z = 0;
-            var x = new Disposable(()=> { z++; });
+            var x = new Disposable(() => { z++; });
 
             Assert.AreEqual(0, z);
             x.Dispose();
@@ -47,6 +52,5 @@ namespace PowerShellClient.Tests
             x.Dispose();
             Assert.AreEqual(1, z); // do not continue to increment.
         }
-
     }
 }
