@@ -90,9 +90,11 @@ client.FileSystem.PutFile
 You can even unzip files to a connected PowerShell client.
 
 ```csharp
-using (var ms = new MemoryStream(/* ... get zip data somehow ... */))
+// Get a ZipArchive somehow, here's a simple one:
+using (var ms = new MemoryStream(Convert.FromBase64String("UEsDBBQAAgAIAItsF1EpklViDgAAAAwAAAAGAAAASGkudHh083D18fFXCPcP8nFRBABQSwECFAAUAAIACACLbBdRKZJVYg4AAAAMAAAABgAAAAAAAAABACAAAAAAAAAASGkudHh0UEsFBgAAAAABAAEANAAAADIAAAAAAA==")))
 using (var zipFile = new System.IO.Compression.ZipArchive(ms))
 {
+    // Unzip the file through the connected PowerShell Client:
     client.FileSystem.UnzipTo
     (
         zipFile, 
@@ -100,8 +102,6 @@ using (var zipFile = new System.IO.Compression.ZipArchive(ms))
     );
 }
 ```
-
-Please Note: the above code won't work as-is; you'll have to actually supply a zip file for that! 😉
 
 ### Remote Connection Example
 Performing remote connections is allowed, and the API is abstracted so that all commands will work the exact same as they do if you are operating locally, be warned though, that connecting to a remote machine requires configuration on both machines (see the troubleshooting below, for a way to test if your connection is valid).
@@ -137,6 +137,7 @@ using (var client = new PSClient())
     {
         Console.WriteLine(file.FullName);
     }
+}
 ```
 
 #### Troubleshooting Remote Connections
