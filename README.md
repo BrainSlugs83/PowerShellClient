@@ -25,7 +25,7 @@ It is important to create this object in a `using` block though, or to call `cli
 
 ### Simple Command Invocation
 
-With the client object you can execute PowerShell scripts easily:
+With a connected and configured client object, you can execute PowerShell scripts easily:
 ```csharp
 client.InvokeScript("Write-Host 'Hello, World' -ForegroundColor Yellow -NoNewLine");
 ```
