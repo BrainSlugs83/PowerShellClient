@@ -8,8 +8,13 @@ Note that for the following code samples the documentation will be using the syn
 To create a connected (to the local machine) client object, that writes output to the Console, use the following code:
 
 ```csharp
-using var client = new PSClient(PSConnectionInfo.CreateLocalConnection());
-client.ConfigureNonInteractiveConsoleHost();
+using (var client = new PSClient(PSConnectionInfo.CreateLocalConnection()))
+{
+    client.ConfigureNonInteractiveConsoleHost();    
+
+    // Client is connected and configured to write output to the console.
+
+}
 ```
 
 Note that `ConfigureNonInteractiveSilentHost` is also an option, as is manually configuring the UI Host.
