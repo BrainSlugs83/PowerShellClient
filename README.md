@@ -57,7 +57,7 @@ Console.WriteLine(result); // 120
 
 When we call one of these generic methods, we're signalling to PowerShell to hand us all of the objects that were on the stack that match the given type.
 
-If we don't specify a generic method, we're telling PowerShell to consume the items on the stack (which is what it does by default).  When this happens, it will write the values of those values out to the UI Host.
+If we don't specify a generic method, we're telling PowerShell to consume the items that were left on the stack (which is what it does by default).  When this happens, it will write the values of those values out to the UI Host.
 
 For example, this code will consume the stack of `FileSystemInfo` objects handed back by the `dir` command and return them to your C# code.
 ```csharp
