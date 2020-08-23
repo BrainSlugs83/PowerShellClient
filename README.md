@@ -3,6 +3,12 @@
 
 Note that for the following code samples the documentation will be using the synchronous methods, but all of them have async variants with the appropriate suffix.
 
+### Installing the Package
+
+```ps
+Install-Package BetterPowerShellClient
+```
+
 ### Creating a Connection
 
 To create a connected (to the local machine) client object, that writes output to the Console, use the following code:
