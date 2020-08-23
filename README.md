@@ -1,7 +1,7 @@
 ﻿# Better PowerShell Client
 ... is a simple easy to use .NET API for interacting with PowerShell, it handles subtleties for you, has overrides for getting back strong typed objects from PowerShell commands and scripts, and can execute code locally and remotely (which can be useful to manage remote machines, and unzip files down to them, etc.).
 
-Note that for the following code samples, we're using the synchronous methods, but all of the methods have async variants.
+Note that for the following code samples the documentation will be using the synchronous methods, but all of them have async variants with the appropriate suffix.
 
 ### Creating a Connection
 
