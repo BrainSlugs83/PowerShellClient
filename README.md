@@ -55,25 +55,19 @@ int result = client.InvokeScript<int>("5 * 24").Single();
 Console.WriteLine(result); // 120
 ```
 
-In PowerShell, all commands return a stack of objects -- so in the above sample, we're using the LINQ extension method `.Single()` to get back the single result.
+When we call one of these generic methods, we're signalling to PowerShell to hand us all of the objects that were on the stack, back to us, that match the given type.
 
-Note that, even if your command doesn't use a `return` statement explicitly, that PowerShell will put any non-consumed objects on to the stack.
+If we don't specify a generic method, we're telling PowerShell to consume the items on the stack (which is what it does by default).  When this happens, it will write the values of those values out to the UI Host.
 
-When invoking a command, if you ask for a result back, we will try to convert the stack into the type you specify and return all of the matching items to you.
-
-But just like in regular PowerShell, for any item that is not consumed, it will be eventually be written to the console instead.
-
-For example, this code will consume the stack of files handed back by the "dir" command and return them to your C# code.
+For example, this code will consume the stack of `FileSystemInfo` objects handed back by the `dir` command and return them to your C# code.
 ```csharp
 var files = client.InvokeCommand<FileSystemInfo>("dir");
 ```
 
-Whereas this command (the exact same PowerShell command), leaves the items on the stack, so they will be output to the screen instead (assuming you've configured your ConsoleHost):
+Whereas this command (the exact same PowerShell command), does not specify a generic type, so it leaves the items on the stack, and they will be written to the UI host.
 ```csharp
 client.InvokeCommand("dir");
 ```
-
-(In case it's not clear, storing the results in the `files` variable is not 100% necessary here, just specifying the result type by calling the generic version of the method is all we have to do to signal that we want to consume the output, of course.)
 
 ### PowerShell File System Operations
 
