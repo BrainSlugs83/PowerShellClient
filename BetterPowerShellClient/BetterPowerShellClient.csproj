@@ -13,12 +13,13 @@
     <RepositoryUrl>https://github.com/BrainSlugs83/PowerShellClient</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>PowerShell, Remoting, Windows, Common</PackageTags>
-    <Description>A simple easy to use .NET API for interacting with PowerShell.</Description>
+    <Description>A simple easy to use .NET API for interacting with PowerShell, it handles subtleties for you, has overrides for getting back strong typed objects from PowerShell commands and scripts, and can execute code locally and remotely (which can be useful to manage remote machines, and unzip files down to them, etc.).</Description>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
     <PackageIcon>Logo.png</PackageIcon>
     <PackageIconUrl />
     <PackageId>BetterPowerShellClient</PackageId>
     <LangVersion>latest</LangVersion>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
