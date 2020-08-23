@@ -59,12 +59,12 @@ When we call one of these generic methods, we're signalling to PowerShell to han
 
 If we don't specify a generic method, we're telling PowerShell to consume the items that were left on the stack (which is what it does by default).  When this happens, it will write those values out to the configured UI Host.
 
-For example, this code will consume the stack of `FileSystemInfo` objects handed back by the `dir` command and return them to your C# code as an `ICollection<FileSystemInfo>`:
+For example, the following code will consume the stack of `FileSystemInfo` objects handed back by the `dir` command and return them to your C# code as an `ICollection<FileSystemInfo>`:
 ```csharp
 var files = client.InvokeCommand<FileSystemInfo>("dir");
 ```
 
-Whereas, this command (the exact same PowerShell command), does not specify a generic type, so it leaves the items on the stack, and they will be written to the configured UI host.
+Whereas, the following code (which calls the exact same PowerShell command), does not specify a generic type, so it leaves the items on the stack, and they will be written to the configured UI host.
 ```csharp
 client.InvokeCommand("dir");
 ```
