@@ -49,7 +49,7 @@ client.InvokeCommand
 
 ### Getting Results Back
 
-You can read back values from your commands:
+You can read back values from your commands, like so:
 ```csharp
 int result = client.InvokeScript<int>("5 * 24").Single();
 Console.WriteLine(result); // 120
